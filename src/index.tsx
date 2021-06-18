@@ -3,10 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore, combineReducers } from "redux";
+import { LoginReducer } from './pages/login/login.reducer';
+import { Provider } from 'react-redux';
+import { AccountReducer } from './pages/account/account.reducer';
+
+
+const allReducers = combineReducers({
+  login: LoginReducer,
+  accounts: AccountReducer
+})
+
+const store = createStore(allReducers);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
