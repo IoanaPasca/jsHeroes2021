@@ -1,12 +1,15 @@
 import { useHistory } from "react-router-dom";
+import {useEffect}  from "react"
 import { Button } from "../../common/components/button/button";
 import { HeaderComponent } from "../../common/components/header/header-component";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {decrement, increment} from "./login.actions"
+import {decrement, getMovieList, increment} from "./login.actions"
 
 export function Login(props:any) {
   const history = useHistory();
+
+  useEffect (()=> props.getMovieList(), [] )
 
   const handleClick = () => {
     history.push("./account")
@@ -34,7 +37,7 @@ const mapStateToProps = (state:any) => ({
 });
 
 const mapDispatchToProps = (dispatch:any) => ({
-  ...bindActionCreators({decrement, increment}, dispatch)
+  ...bindActionCreators({decrement, increment, getMovieList}, dispatch)
 });
 
 export const LoginPage = connect(mapStateToProps, mapDispatchToProps)(Login);

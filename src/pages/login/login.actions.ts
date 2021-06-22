@@ -11,3 +11,10 @@ export const increment = () => {
     payload: 1
   }
 }
+
+export const getMovieList = () => {
+  return {
+    type: "GET_MOVIE_LIST",
+    payload: 1
+  }
+}

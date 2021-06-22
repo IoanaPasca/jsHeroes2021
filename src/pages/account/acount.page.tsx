@@ -1,9 +1,15 @@
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { HeaderComponent } from "../../common/components/header/header-component";
 import { increment, decrement } from "../account/account.actions";
 import { bindActionCreators } from "redux";
+import { getMovieList } from "../login/login.actions";
 
 function Account(props: any) {
+
+  useEffect(() => { getMovieList() }, [])
+  console.log("Props Account", props)
+  
   return (
     <div>
       <HeaderComponent />
@@ -20,6 +26,6 @@ const mapStateToProps = (state:any) => ({
 });
 
 const mapDispatchToProps = (dispatch:any) => ({
-  ...bindActionCreators({decrement, increment}, dispatch)
+  ...bindActionCreators({decrement, increment, getMovieList}, dispatch)
 })
 export const AccountPage  = connect(mapStateToProps, mapDispatchToProps)(Account)
